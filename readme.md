@@ -1,7 +1,7 @@
-What this?
+What's this?
 ==========
 
-This is an alternative to _xinput_calibrator_ (as seen on
+This is a forked alternative to _xinput_calibrator_ (as seen on
 [github](https://github.com/tias/xinput_calibrator),
 [FreeDesktop](https://www.freedesktop.org/wiki/Software/xinput_calibrator/),
 [Ubuntu](https://packages.ubuntu.com/disco/xinput-calibrator), etc.).
@@ -23,7 +23,7 @@ Differences:
 | Outputs        |Xorg.conf, hal, xinput           |xinput                         |
 | Popularity     |High                             |Zero so far                    |
 | Tested         |Pretty well                      |Not very well                  |
-| OS distribution|Available in most major repos    |Zero so far                    |
+| OS distribution|Available in most major repos    |WINEdows                       |
 | Dependencies   |libstdc++, libx11, libxi         |python3, tkinter, numpy        |
 
 _xinput_calibrator_ features precalibration, timeouts, misclick detection, fake driver testing, and
@@ -32,28 +32,22 @@ _xcalibrate_ features none of those things, but offers some other features not p
 _xinput_calibrator_, including pre-save cal test, cal quality indicator, arbitrary cal point count,
 and a slightly more informative GUI. Also, the source is quite simpler.
 
-Why this?
+Why this fork?
 =========
+While reinderien's calibration tool is excellent, however, this script wouldn't work on my personal CF-19 laptop, since the touchscreen shows up as a keyboard device.
+This fork has been modified to show BOTH keyboard and pointer devices in the selection now.
+It is also modified to actually save the .conf file in the correct directory automatically (instead of having to mess around running text editors in root and saving changes manually).
+This does however mean the script needs to be run as sudo.
 
-After I couldn't figure out why _xinput_calibrator_ wasn't doing anything on my system (an old CF-29),
-I read and followed
-[this excellent walkthrough](https://wiki.archlinux.org/index.php/Talk:Calibrating_Touchscreen#Libinput_breaks_xinput_calibrator)
-on the Arch wiki. It was too hacky for my comfort, so I wrote this tool inspired by Zootboy's
-procedure but with some key differences - this is a stand-alone tool that does not require running
-_xinput_calibrator_; and it uses Numpy to do some real matrix math instead of hacking around with
-element-by-element calculations and a fixed calibration dataset size.
-
-How this?
+How to install?
 =========
+First you need the dependencies
+	apt install python3-tk python3-numpy
+	
+You can then run: 
+	sudo python3 xcalibrate.py
+To calibrate the display
+	
+Optionally copy the xcalibrate.py file to /usr/bin/
+Then copy the .launcher file to /usr/share/applications/
 
-    ./xcalibrate
-
-To do
-=====
-
-- ?
-
-Discuss
-=======
-
-[![Join the chat at https://gitter.im/reinderien_xcal/Lobby](https://badges.gitter.im/reinderien_xcal/Lobby.svg)](https://gitter.im/reinderien_xcal/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)

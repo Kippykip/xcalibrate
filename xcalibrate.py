@@ -17,7 +17,7 @@ def xinput(*args):
 
 
 def get_devs():
-    groups = re.findall(r'.(\w.+(\w|\(\d+\)))\s+id=(\d+)\D+slave *pointer', xinput('--list', '--short'))
+    groups = re.findall(r'.(\w.+(\w|\(\d+\)))\s+id=(\d+)\D+slave', xinput('--list', '--short'))
     devs = {int(group[2]): group[0] for group in groups}
     if not devs:
         print('No suitable input devices found')
@@ -266,6 +266,25 @@ def print_xorg_config(dev_name, new_cal):
     )
     print(xorg_config)
 
+def save_xorg_config(dev_name, new_cal):
+    print("Saving calibration to '/usr/share/X11/xorg.conf.d/99-libinput-ts-calib.conf'...")
+    print()
+    xorg_config = (
+    'Section "InputClass"\n'
+    '    Identifier      "calibration"\n'
+    '    MatchProduct    "{}"\n'
+    '    Option          "CalibrationMatrix"  "{}"\n'
+    'EndSection\n'
+    ).format(
+        str(dev_name),
+        " ".join(map(str, new_cal.flatten().tolist()[0]))
+    )
+
+    with open('/usr/share/X11/xorg.conf.d/99-libinput-ts-calib.conf', 'w') as the_file:
+        the_file.write(xorg_config)
+
+    print("Finished!")
+
 def main():
     devs = get_devs()
     print_devs(devs)
@@ -296,6 +315,6 @@ def main():
 
     if new_cal is not None and ask('Use calibration?'):
         use_cal(dev, new_cal)
-        print_xorg_config(devs[dev], new_cal)	
+        save_xorg_config(devs[dev], new_cal)	
 
 main()
