@@ -1,10 +1,11 @@
 What's this?
 ==========
 
-This is a forked alternative to _xinput_calibrator_ (as seen on
+This is a forked version of xcalibrate, which is an alternative to _xinput_calibrator_ (as seen on
 [github](https://github.com/tias/xinput_calibrator),
 [FreeDesktop](https://www.freedesktop.org/wiki/Software/xinput_calibrator/),
-[Ubuntu](https://packages.ubuntu.com/disco/xinput-calibrator), etc.).
+[Ubuntu](https://packages.ubuntu.com/disco/xinput-calibrator), etc.).  
+[Original version](https://github.com/reinderien/xcalibrate)
 
 Similarities:
 - For Unix-like OS
