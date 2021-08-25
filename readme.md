@@ -42,7 +42,7 @@ This does however mean the script needs to be run as sudo.
 How to install?
 =========
 First you need the dependencies
-	apt install python3-tk python3-numpy
+	sudo apt install python3-tk python3-numpy
 	
 You can then run: 
 	sudo python3 xcalibrate.py
